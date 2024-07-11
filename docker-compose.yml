@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  database:
+    image: 'postgres:15.7'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+      POSTGRES_USER: '${DB_USER}'
+      POSTGRES_DB: '${DB_NAME}'
+
+    networks:
+      - postgres-network
+    volumes:
+      - '~/postgres-data:/var/lob/postgresql/data'
+      
+networks: 
+  postgres-network:
+    driver: bridge

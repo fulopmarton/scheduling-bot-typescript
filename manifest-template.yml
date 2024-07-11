@@ -1,0 +1,36 @@
+display_information:
+  name: Scheduling Bot MVP
+  description: A bot for managing cleaning schedule
+  background_color: "#2c2d30"
+features:
+  bot_user:
+    display_name: Scheduler
+    always_online: false
+  slash_commands:
+    - command: /schedule
+      url: '{{app_url}}/slack/events'
+      description: Show a list of this weeks schedule
+      should_escape: false
+    - command: /manage_users
+      url: '{{app_url}}/slack/events'
+      description: Manage users
+      should_escape: false
+oauth_config:
+  redirect_urls:
+    - https://localhost:5555
+  scopes:
+    user:
+      - im:history
+      - im:write
+    bot:
+      - chat:write
+      - team:read
+      - users:read
+      - commands
+settings:
+  interactivity:
+    is_enabled: true
+    request_url: '{{app_url}}/slack/events'
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false

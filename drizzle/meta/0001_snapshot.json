@@ -1,0 +1,133 @@
+{
+  "id": "62528cef-44e5-4472-9827-93d413325777",
+  "prevId": "bd797e8c-9cfb-4464-91ee-3b33b843d37a",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.schedule": {
+      "name": "schedule",
+      "schema": "",
+      "columns": {
+        "schedule_date": {
+          "name": "schedule_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "team_id": {
+          "name": "team_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slack_user_id": {
+          "name": "slack_user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "schedule_slack_user_id_slack_user_slack_user_id_fk": {
+          "name": "schedule_slack_user_id_slack_user_slack_user_id_fk",
+          "tableFrom": "schedule",
+          "tableTo": "slack_user",
+          "columnsFrom": [
+            "slack_user_id"
+          ],
+          "columnsTo": [
+            "slack_user_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "schedule_schedule_date_team_id_pk": {
+          "name": "schedule_schedule_date_team_id_pk",
+          "columns": [
+            "schedule_date",
+            "team_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "public.slack_user": {
+      "name": "slack_user",
+      "schema": "",
+      "columns": {
+        "slack_user_id": {
+          "name": "slack_user_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "full_name": {
+          "name": "full_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "should_clean": {
+          "name": "should_clean",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "user_dump": {
+          "name": "user_dump",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'{}'"
+        },
+        "team_id": {
+          "name": "team_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

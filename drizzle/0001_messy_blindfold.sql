@@ -1,0 +1,1 @@
+ALTER TABLE "slack_user" ADD COLUMN "user_dump" jsonb DEFAULT '{}';
